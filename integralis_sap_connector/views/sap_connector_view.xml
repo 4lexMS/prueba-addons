@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
           <tree>
             <field name="name"/>
-            <field name="sap_session_id" readonly="1" />
-            <field name="sap_route_id" readonly="1" />
+            <field name="sap_session_id" readonly="1"/>
+            <field name="sap_route_id" readonly="1"/>
           </tree>
         </field>
       </record>
@@ -45,12 +45,12 @@
       <record model="ir.actions.act_window" id="sap_action_window">
         <field name="name">INICIO DE SESION</field>
         <field name="res_model">sap.session</field>
-        <field name="view_mode">form,tree,kanban</field>
+        <field name="view_mode">tree,form,kanban</field>
       </record>
   
       <!-- Top menu item -->
   
-      <menuitem name="INICIAR SESION" id="sap_menu_root" action="sap_action_window"/>
+      <menuitem name="SAP connector" id="sap_menu_root" action="sap_action_window"/>
   
       <!-- menu categories -->
   
