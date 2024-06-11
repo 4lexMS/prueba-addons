@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_conexion_view_form" model="ir.ui.view">
+        <field name="name">res.conexion.view.form</field>
+        <field name="model">res.conexion</field>
+        <field name="arch" type="xml">
+            <form string="Res Conexion">
+                <sheet>
+                    <widget name="web_ribbon" title="Deshabilitado" bg_color="bg-danger" invisible="state != 'disabled'"/>
+                    <widget name="web_ribbon" title="Modo de prueba" bg_color="bg-warning" invisible="state != 'test'"/>
+                    <widget name="web_ribbon" title="Producción" bg_color="bg-success" invisible="state != 'production'"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Name" required="1"/></h1>
+                    </div>
+                    <group name="payment_state">
+                        <field name="compute_state" invisible="1"/>
+                        <field name="provider" required="1"/>
+                        <field name="state" required="1" widget="radio"/>
+                        <field name="company_id" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page name="configuration" string="Configuración">
+                            <group name="environment_test" invisible="state != 'test'">
+                                <group>
+                                    <field name="user_test"/>
+                                    <field name="password_test" />
+                                    <field name="token_test"/>
+                                </group>
+                                <group>
+                                    <field name="api_test"/>
+                                    <field name="port_test"/>
+                                    <field name="root_path_test"/>
+                                </group>
+                            </group>
+                            <group name="environment_production" invisible="state != 'production'">
+                                <group>
+                                    <field name="user_prod"/>
+                                    <field name="password_prod"/>
+                                    <field name="token_prod"/>
+                                </group>
+                                <group>
+                                    <field name="api_prod"/>
+                                    <field name="port_prod"/>
+                                    <field name="root_path_prod"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="res_conexion_view_tree" model="ir.ui.view">
+        <field name="name">res.conexion.view.tree</field>
+        <field name="model">res.conexion</field>
+        <field name="arch" type="xml">
+            <tree string="Res Conexion"
+                decoration-danger="state == 'disabled'"
+                decoration-warning="state == 'test'"
+                decoration-success="state == 'production'">
+                <field name="name" placeholder="Name"/>
+                <field name="provider"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_conexion_action" model="ir.actions.act_window">
+        <field name="name">Conexiones</field>
+        <field name="res_model">res.conexion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear nuevas conexiones.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="res_conexion_menu"
+        name="Conexiones"
+        action="res_conexion_action"
+        groups="base.group_erp_manager"
+        parent="base.menu_custom"/>
+</odoo>

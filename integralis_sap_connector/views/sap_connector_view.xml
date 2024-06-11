@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+  
+      <record model="ir.ui.view" id="sap_session_list">
+        <field name="name">session</field>
+        <field name="model">sap.session</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="state"/>
+            <field name="sap_session_id"/>
+          </tree>
+        </field>
+      </record>
+  
+      <record model="ir.ui.view" id="sap_session_form">
+        <field name="name">session</field>
+        <field name="model">sap.session</field>
+        <field name="arch" type="xml">
+          <form>
+            <header>
+              <button type="object" name="action_sap_login" string="Login" invisible="state not in ('draft', 'closed')"/>
+              <button type="object" name="action_sap_logout" string="Logout" invisible="state not in ('logged', 'closed')"/>
+              <field name="state" widget="statusbar" statusbar_visible="draft"/>
+            </header>
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="sap_session_id"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+  
+      <!-- actions opening views on models -->
+  
+      <record model="ir.actions.act_window" id="sap_action_window">
+        <field name="name">INICIO DE SESION</field>
+        <field name="res_model">sap.session</field>
+        <field name="view_mode">form,tree,kanban</field>
+      </record>
+  
+      <!-- Top menu item -->
+  
+      <menuitem name="LOGIN" id="sap_menu_root"/>
+  
+      <!-- menu categories -->
+  
+      <menuitem name="Inicio se sesión" id="sap_menu_1" parent="sap_menu_root" action="sap_action_window"/>               
+  
+    </data>
+  </odoo>
