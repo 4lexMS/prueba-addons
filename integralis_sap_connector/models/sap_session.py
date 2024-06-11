@@ -19,7 +19,7 @@ class SapSession(models.Model):
     state = fields.Selection(
         string="Estado",
         selection=[('draft', "Borrador"), ("logged", "Session Iniciada"), ("closed", "Session Cerrada")],
-        default='logged', copy=False, readonly=True)
+        default='draft', copy=False, readonly=True)
 
     @api.model
     def cron_download_products_from_sap(self):

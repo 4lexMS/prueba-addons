@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
           <tree>
             <field name="name"/>
-            <field name="state"/>
-            <field name="sap_session_id"/>
+            <field name="sap_session_id" readonly="1" />
+            <field name="sap_route_id" readonly="1" />
           </tree>
         </field>
       </record>
@@ -25,10 +25,14 @@
               <field name="state" widget="statusbar" statusbar_visible="draft"/>
             </header>
             <sheet>
+              <div class="oe_title">
+                <h1>
+                 <field name="name"/>
+                </h1>
+              </div>
               <group>
-                <field name="name"/>
-                <field name="state"/>
-                <field name="sap_session_id"/>
+                <field name="sap_session_id" readonly="1"/>
+                <field name="sap_route_id" readonly="1"/>
               </group>
             </sheet>
           </form>
@@ -46,11 +50,11 @@
   
       <!-- Top menu item -->
   
-      <menuitem name="LOGIN" id="sap_menu_root"/>
+      <menuitem name="INICIAR SESION" id="sap_menu_root" action="sap_action_window"/>
   
       <!-- menu categories -->
   
-      <menuitem name="Inicio se sesión" id="sap_menu_1" parent="sap_menu_root" action="sap_action_window"/>               
+      
   
     </data>
   </odoo>
