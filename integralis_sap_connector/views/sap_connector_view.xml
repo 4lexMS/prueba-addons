@@ -8,8 +8,8 @@
         <field name="arch" type="xml">
           <tree>
             <field name="name"/>
-            <field name="sap_session_id" readonly="1"/>
-            <field name="sap_route_id" readonly="1"/>
+            <field name="sap_session_id"/>
+            <field name="sap_route_id"/>
           </tree>
         </field>
       </record>
